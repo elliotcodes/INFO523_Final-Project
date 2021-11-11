@@ -1,0 +1,467 @@
+-------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/elliot/Desktop/Fall 2021/INFO523/Final Project/Data Analysis/info523-CVRM_Sample.log
+  log type:  text
+ opened on:  10 Nov 2021, 17:53:11
+
+. set more off
+
+. 
+. cd "/Users/elliot/Desktop/Fall 2021/INFO523/Final Project/Data Analysis"
+/Users/elliot/Desktop/Fall 2021/INFO523/Final Project/Data Analysis
+
+. 
+. //---| Author: Elliot Ramo
+. //---| Contact: elliot@email.arizona.edu
+. //---| Course: FA21 INFO 523 - Data Mining and Discovery
+. //---| Instructor: Dr. Cristian Román-Palacios
+. //---| Program: info523-CVRM_Sample.do
+. //---| Task: Sample of CVRM Data for Final Project
+. 
+. /* NOTE:        * This .do file takes a random sample from a dataset compiled by
+>                           Elliot Truslow in Spring 2020. Data sources: US Census, US Bureau
+>                           of Labor Statistics, City of Chicago, and Heartland Alliance.
+> */
+.                         
+. *------------------------------------------------------------------------------*
+. 
+. /// ----> Generating Sample
+> 
+. * Bring in data
+. use Full_CVRM.dta
+
+. 
+. * Save new copy
+. save Full_CVRM-copy.dta // saving copy of original
+file Full_CVRM-copy.dta saved
+
+. 
+. * Setting seed
+. set seed 38118148 // true random number generated at www.random.org
+
+. 
+. * Generating random draws
+. gen random = runiform() // random #s between 0-1
+
+.         note random: random num 0-1  \ "info523-CVRM_Sample.do ELT 2021-11-10"
+
+.         lab var random "Random #s 0-1"
+
+.         describe // confirming change
+
+Contains data from Full_CVRM-copy.dta
+ Observations:       313,469                  
+    Variables:            52                  10 Nov 2021 17:53
+-------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+riskscore       str9    %9s                   
+pred_agelasta~t str12   %12s                  
+pred_shooting~m byte    %8.0g                 
+pred_assaultv~m byte    %8.0g                 
+pred_violetof~m byte    %8.0g                 
+pred_crimactt~m float   %9.0g                 
+pred_uuwarres~m byte    %8.0g                 
+sex             str1    %9s                   
+race            str3    %9s                   
+weaponarrest_yn byte    %8.0g                 
+drugarrest_yn   byte    %8.0g                 
+agegrp          str12   %12s                  AGE GRP
+ageto           str12   %12s                  AGE TO
+stoporderno     long    %12.0g                STOP ORDER NO
+paroleestatus~n byte    %8.0g                 
+lastarrest_date str8    %9s                   
+distlastarrest  byte    %8.0g                 
+majoritydist    byte    %8.0g                 MAJORITY DIST
+dlst            str2    %9s                   DLST
+distlastresid~e byte    %8.0g                 
+weaponsarrest~m byte    %8.0g                 
+lastweaparres~e str14   %14s                  
+narcoticssarr~m byte    %8.0g                 
+lastnarcarres~e str14   %14s                  
+cityresidence~c str15   %15s                  
+stateresidenc~c str2    %9s                   
+zipresidence_~c str9    %9s                   
+idoccpddist     byte    %8.0g                 IDOC CPD DIST
+arrestbycpd_yn  byte    %8.0g                 
+domassaultarr~m byte    %8.0g                 
+lastdomassaul~e str14   %14s                  
+currentage      str12   %12s                  
+lastpartytovi~e str14   %14s                  
+trapstatus      byte    %8.0g                 TRAP STATUS
+statusi         str1    %9s                   STATUS I
+trapflags       byte    %8.0g                 TRAP FLAGS
+cvrm_flags      byte    %8.0g                 
+latitude        byte    %8.0g                 LATITUDE
+longitude       byte    %8.0g                 LONGITUDE
+censustract     byte    %8.0g                 CENSUS TRACT
+commarea        byte    %8.0g                 COMM AREA
+location        byte    %8.0g                 LOCATION
+dayslastarres~t int     %8.0g                 
+notincookcoun~t byte    %8.0g                 
+livewherearre~t byte    %8.0g                 
+shootingvicti~t byte    %8.0g                 
+assaultvictim~t byte    %8.0g                 
+predsumwotren~t byte    %8.0g                 
+lastarrestpol~t byte    %8.0g                 
+agecatchange_et byte    %8.0g                 
+urban_yn        float   %12.0g     urban_yn   Lives in City or County
+random          float   %9.0g               * Random #s 0-1
+                                            * indicated variables have notes
+-------------------------------------------------------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+.         
+. * Sort to ensure randomness of sample
+. sort random
+
+. 
+. * Selecting sample
+. gen insample = _n <=1000 // dummy 1 = in the sample, 0 = not in the sample
+
+.         note insample: 1 = in sample, 0 = not  \ "soc561-HW5.do ELT 2021-10-06"
+
+.         lab var insample "1 = in, 0 = not in"
+
+.         describe // confirming change
+
+Contains data from Full_CVRM-copy.dta
+ Observations:       313,469                  
+    Variables:            53                  10 Nov 2021 17:53
+-------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+riskscore       str9    %9s                   
+pred_agelasta~t str12   %12s                  
+pred_shooting~m byte    %8.0g                 
+pred_assaultv~m byte    %8.0g                 
+pred_violetof~m byte    %8.0g                 
+pred_crimactt~m float   %9.0g                 
+pred_uuwarres~m byte    %8.0g                 
+sex             str1    %9s                   
+race            str3    %9s                   
+weaponarrest_yn byte    %8.0g                 
+drugarrest_yn   byte    %8.0g                 
+agegrp          str12   %12s                  AGE GRP
+ageto           str12   %12s                  AGE TO
+stoporderno     long    %12.0g                STOP ORDER NO
+paroleestatus~n byte    %8.0g                 
+lastarrest_date str8    %9s                   
+distlastarrest  byte    %8.0g                 
+majoritydist    byte    %8.0g                 MAJORITY DIST
+dlst            str2    %9s                   DLST
+distlastresid~e byte    %8.0g                 
+weaponsarrest~m byte    %8.0g                 
+lastweaparres~e str14   %14s                  
+narcoticssarr~m byte    %8.0g                 
+lastnarcarres~e str14   %14s                  
+cityresidence~c str15   %15s                  
+stateresidenc~c str2    %9s                   
+zipresidence_~c str9    %9s                   
+idoccpddist     byte    %8.0g                 IDOC CPD DIST
+arrestbycpd_yn  byte    %8.0g                 
+domassaultarr~m byte    %8.0g                 
+lastdomassaul~e str14   %14s                  
+currentage      str12   %12s                  
+lastpartytovi~e str14   %14s                  
+trapstatus      byte    %8.0g                 TRAP STATUS
+statusi         str1    %9s                   STATUS I
+trapflags       byte    %8.0g                 TRAP FLAGS
+cvrm_flags      byte    %8.0g                 
+latitude        byte    %8.0g                 LATITUDE
+longitude       byte    %8.0g                 LONGITUDE
+censustract     byte    %8.0g                 CENSUS TRACT
+commarea        byte    %8.0g                 COMM AREA
+location        byte    %8.0g                 LOCATION
+dayslastarres~t int     %8.0g                 
+notincookcoun~t byte    %8.0g                 
+livewherearre~t byte    %8.0g                 
+shootingvicti~t byte    %8.0g                 
+assaultvictim~t byte    %8.0g                 
+predsumwotren~t byte    %8.0g                 
+lastarrestpol~t byte    %8.0g                 
+agecatchange_et byte    %8.0g                 
+urban_yn        float   %12.0g     urban_yn   Lives in City or County
+random          float   %9.0g               * Random #s 0-1
+insample        float   %9.0g               * 1 = in, 0 = not in
+                                            * indicated variables have notes
+-------------------------------------------------------------------------------------------------------------------------------
+Sorted by: random
+     Note: Dataset has changed since last saved.
+
+. 
+. * Confirming change
+. tab insample, missing // 1 = 1000, 0 = 312,469
+
+1 = in, 0 = |
+     not in |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |    312,469       99.68       99.68
+          1 |      1,000        0.32      100.00
+------------+-----------------------------------
+      Total |    313,469      100.00
+
+. 
+. * Keeping only observations in the sample
+. keep if insample==1
+(312,469 observations deleted)
+
+. describe // confirming change
+
+Contains data from Full_CVRM-copy.dta
+ Observations:         1,000                  
+    Variables:            53                  10 Nov 2021 17:53
+-------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+riskscore       str9    %9s                   
+pred_agelasta~t str12   %12s                  
+pred_shooting~m byte    %8.0g                 
+pred_assaultv~m byte    %8.0g                 
+pred_violetof~m byte    %8.0g                 
+pred_crimactt~m float   %9.0g                 
+pred_uuwarres~m byte    %8.0g                 
+sex             str1    %9s                   
+race            str3    %9s                   
+weaponarrest_yn byte    %8.0g                 
+drugarrest_yn   byte    %8.0g                 
+agegrp          str12   %12s                  AGE GRP
+ageto           str12   %12s                  AGE TO
+stoporderno     long    %12.0g                STOP ORDER NO
+paroleestatus~n byte    %8.0g                 
+lastarrest_date str8    %9s                   
+distlastarrest  byte    %8.0g                 
+majoritydist    byte    %8.0g                 MAJORITY DIST
+dlst            str2    %9s                   DLST
+distlastresid~e byte    %8.0g                 
+weaponsarrest~m byte    %8.0g                 
+lastweaparres~e str14   %14s                  
+narcoticssarr~m byte    %8.0g                 
+lastnarcarres~e str14   %14s                  
+cityresidence~c str15   %15s                  
+stateresidenc~c str2    %9s                   
+zipresidence_~c str9    %9s                   
+idoccpddist     byte    %8.0g                 IDOC CPD DIST
+arrestbycpd_yn  byte    %8.0g                 
+domassaultarr~m byte    %8.0g                 
+lastdomassaul~e str14   %14s                  
+currentage      str12   %12s                  
+lastpartytovi~e str14   %14s                  
+trapstatus      byte    %8.0g                 TRAP STATUS
+statusi         str1    %9s                   STATUS I
+trapflags       byte    %8.0g                 TRAP FLAGS
+cvrm_flags      byte    %8.0g                 
+latitude        byte    %8.0g                 LATITUDE
+longitude       byte    %8.0g                 LONGITUDE
+censustract     byte    %8.0g                 CENSUS TRACT
+commarea        byte    %8.0g                 COMM AREA
+location        byte    %8.0g                 LOCATION
+dayslastarres~t int     %8.0g                 
+notincookcoun~t byte    %8.0g                 
+livewherearre~t byte    %8.0g                 
+shootingvicti~t byte    %8.0g                 
+assaultvictim~t byte    %8.0g                 
+predsumwotren~t byte    %8.0g                 
+lastarrestpol~t byte    %8.0g                 
+agecatchange_et byte    %8.0g                 
+urban_yn        float   %12.0g     urban_yn   Lives in City or County
+random          float   %9.0g               * Random #s 0-1
+insample        float   %9.0g               * 1 = in, 0 = not in
+                                            * indicated variables have notes
+-------------------------------------------------------------------------------------------------------------------------------
+Sorted by: random
+     Note: Dataset has changed since last saved.
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. /// ----> Cleanup and Save
+> 
+. * Saving dataset as a separate file, adding datasignature
+. save info523-CVRM_Sample.dta // saving copy of original
+file info523-CVRM_Sample.dta saved
+
+. 
+. * Adding metadata to dataset
+. datasignature set
+  1000:53(105485):3765960335:2221490595       (data signature set)
+
+. note: Data signature: `r(datasignature)' // saving datasig to file metadata
+
+. note: info523-CVRM_Sample.dta \ rand samp CVRM data \ info-523 ELT 2021-11-10
+
+. note: seed = 38118148
+
+.         notes // confirming note is saved to dataset
+
+_dta:
+  1.  Data signature: 1000:53(105485):3765960335:2221490595
+  2.  info523-CVRM_Sample.dta \ rand samp CVRM data \ info-523 ELT 2021-11-10
+  3.  seed = 38118148
+
+random:
+  1.  random num 0-1 \ "info523-CVRM_Sample.do ELT 2021-11-10"
+
+insample:
+  1.  1 = in sample, 0 = not \ "soc561-HW5.do ELT 2021-10-06"
+
+. 
+. * Labeling dataset
+. label data "Random Sample of CVRM Data"
+
+. describe // confirming change
+
+Contains data from info523-CVRM_Sample.dta
+ Observations:         1,000                  Random Sample of CVRM Data
+    Variables:            53                  10 Nov 2021 17:53
+                                              (_dta has notes)
+-------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+riskscore       str9    %9s                   
+pred_agelasta~t str12   %12s                  
+pred_shooting~m byte    %8.0g                 
+pred_assaultv~m byte    %8.0g                 
+pred_violetof~m byte    %8.0g                 
+pred_crimactt~m float   %9.0g                 
+pred_uuwarres~m byte    %8.0g                 
+sex             str1    %9s                   
+race            str3    %9s                   
+weaponarrest_yn byte    %8.0g                 
+drugarrest_yn   byte    %8.0g                 
+agegrp          str12   %12s                  AGE GRP
+ageto           str12   %12s                  AGE TO
+stoporderno     long    %12.0g                STOP ORDER NO
+paroleestatus~n byte    %8.0g                 
+lastarrest_date str8    %9s                   
+distlastarrest  byte    %8.0g                 
+majoritydist    byte    %8.0g                 MAJORITY DIST
+dlst            str2    %9s                   DLST
+distlastresid~e byte    %8.0g                 
+weaponsarrest~m byte    %8.0g                 
+lastweaparres~e str14   %14s                  
+narcoticssarr~m byte    %8.0g                 
+lastnarcarres~e str14   %14s                  
+cityresidence~c str15   %15s                  
+stateresidenc~c str2    %9s                   
+zipresidence_~c str9    %9s                   
+idoccpddist     byte    %8.0g                 IDOC CPD DIST
+arrestbycpd_yn  byte    %8.0g                 
+domassaultarr~m byte    %8.0g                 
+lastdomassaul~e str14   %14s                  
+currentage      str12   %12s                  
+lastpartytovi~e str14   %14s                  
+trapstatus      byte    %8.0g                 TRAP STATUS
+statusi         str1    %9s                   STATUS I
+trapflags       byte    %8.0g                 TRAP FLAGS
+cvrm_flags      byte    %8.0g                 
+latitude        byte    %8.0g                 LATITUDE
+longitude       byte    %8.0g                 LONGITUDE
+censustract     byte    %8.0g                 CENSUS TRACT
+commarea        byte    %8.0g                 COMM AREA
+location        byte    %8.0g                 LOCATION
+dayslastarres~t int     %8.0g                 
+notincookcoun~t byte    %8.0g                 
+livewherearre~t byte    %8.0g                 
+shootingvicti~t byte    %8.0g                 
+assaultvictim~t byte    %8.0g                 
+predsumwotren~t byte    %8.0g                 
+lastarrestpol~t byte    %8.0g                 
+agecatchange_et byte    %8.0g                 
+urban_yn        float   %12.0g     urban_yn   Lives in City or County
+random          float   %9.0g               * Random #s 0-1
+insample        float   %9.0g               * 1 = in, 0 = not in
+                                            * indicated variables have notes
+-------------------------------------------------------------------------------------------------------------------------------
+Sorted by: random
+     Note: Dataset has changed since last saved.
+
+. 
+. * Save and Close
+. quietly compress // compress the file to save space
+
+. notes
+
+_dta:
+  1.  Data signature: 1000:53(105485):3765960335:2221490595
+  2.  info523-CVRM_Sample.dta \ rand samp CVRM data \ info-523 ELT 2021-11-10
+  3.  seed = 38118148
+
+random:
+  1.  random num 0-1 \ "info523-CVRM_Sample.do ELT 2021-11-10"
+
+insample:
+  1.  1 = in sample, 0 = not \ "soc561-HW5.do ELT 2021-10-06"
+
+. codebook, compact
+
+Variable       Obs Unique      Mean       Min       Max  Label
+-------------------------------------------------------------------------------------------------------------------------------
+riskscore     1000      5         .         .         .  
+pred_agela~t   999      6         .         .         .  
+pred_shoot~m  1000      3       .02         0         2  
+pred_assau~m  1000      4      .053         0         3  
+pred_viole~m  1000      5      .146         0         4  
+pred_crima~m  1000     38    -.0657      -3.8       5.4  
+pred_uuwar~m  1000      3      .051         0         2  
+sex           1000      2         .         .         .  
+race          1000      7         .         .         .  
+weaponarre~n  1000      2      .052         0         1  
+drugarrest~n  1000      2      .207         0         1  
+agegrp         999      6         .         .         .  AGE GRP
+ageto          999      6         .         .         .  AGE TO
+stoporderno      2      2  3.00e+08  3.00e+08  3.00e+08  STOP ORDER NO
+paroleesta~n    30      1         1         1         1  
+lastarrest~e  1000    763         .         .         .  
+distlastar~t  1000     23    20.165         1        31  
+majoritydist   642     23  11.35358         1        31  MAJORITY DIST
+dlst           155      5         .         .         .  DLST
+distlastre~e  1000     23    20.419         1        31  
+weaponsarr~m    52      3  1.307692         1         3  
+lastweapar~e    52     52         .         .         .  
+narcoticss~m   207      8  2.004831         1         8  
+lastnarcar~e   207    207         .         .         .  
+cityreside~c   149     36         .         .         .  
+stateresid~c   145      2         .         .         .  
+zipresiden~c   146     60         .         .         .  
+idoccpddist     19     12  8.842105         2        22  IDOC CPD DIST
+arrestbycp~n  1000      2      .525         0         1  
+domassault~m   176      8  1.664773         1         9  
+lastdomass~e   176    176         .         .         .  
+currentage    1000      6         .         .         .  
+lastpartyt~e    45     45         .         .         .  
+trapstatus      17      2  3.117647         3         4  TRAP STATUS
+statusi       1000      1         .         .         .  STATUS I
+trapflags        0      0         .         .         .  TRAP FLAGS
+cvrm_flags       0      0         .         .         .  
+latitude         0      0         .         .         .  LATITUDE
+longitude        0      0         .         .         .  LONGITUDE
+censustract      0      0         .         .         .  CENSUS TRACT
+commarea         0      0         .         .         .  COMM AREA
+location         0      0         .         .         .  LOCATION
+dayslastar~t  1000    763  1372.398       494      4779  
+notincookc~t   142      1         1         1         1  
+livewherea~t  1000      2      .625         0         1  
+shootingvi~t  1000      2      .018         0         1  
+assaultvic~t  1000      2      .046         0         1  
+predsumwot~t  1000      7       .27         0         6  
+lastarrest~t   547      3  1.987203         1         3  
+agecatchan~t  1000      2      .688         0         1  
+urban_yn      1000      2      .536         0         1  Lives in City or County
+random        1000   1000  .0016361  1.58e-06  .0032848  Random #s 0-1
+insample      1000      1         1         1         1  1 = in, 0 = not in
+-------------------------------------------------------------------------------------------------------------------------------
+
+. 
+. * Log and exit
+. log close // ending log to close output
+      name:  <unnamed>
+       log:  /Users/elliot/Desktop/Fall 2021/INFO523/Final Project/Data Analysis/info523-CVRM_Sample.log
+  log type:  text
+ closed on:  10 Nov 2021, 17:53:11
+-------------------------------------------------------------------------------------------------------------------------------
