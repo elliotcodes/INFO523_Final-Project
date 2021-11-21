@@ -1,0 +1,29 @@
+Discussion Topics
+General outline for presentation
+Week of November 29, 2021
+
+· Background
+    · History of policing, racialized police violence
+    · Key points on Cook County, IL (e.g., "Crook County")
+    · Key points about predictive policing tech, applications, risks
+· Context Data
+    · Background on CVRM, use, state purpose, existing model
+    · Demographics for City/Rural from sample
+    · Demographics for City/Rural from US Census
+· Methods
+    · Stata, sample
+    · R, subset
+    · Shiny App: UI pieces
+    · Shiny App: Backend pieces
+· Outcome
+    · What does the app look like
+    · How to use it
+    · What it does
+· Discussion
+    · What are the implications?
+    · Any interesting findings/observations?
+    · Why does the project matter?
+    · Challenges with building the project?
+    · Key things learned?
+    
+    
