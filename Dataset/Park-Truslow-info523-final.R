@@ -24,6 +24,7 @@ library(RCurl)
 library(sp)
 library(htmlwidgets)
 library(htmltools)
+library(data.table)
 
 options(digits = 3)
 set.seed(1234)
@@ -47,6 +48,16 @@ CVRM_subset$riskscore <- factor(CVRM_subset$riskscore,
 # look at CVRM breakdown
 summary(CVRM_subset)
 table(CVRM_subset$distlastresidence)
+
+chi_dat <- as.data.table(CVRM_subset)
+
+# filter out 31
+chi_tab <- chi_dat[distlastresidence!="31"]
+# 
+# coordinates(chi_tab) = c("google_longitude","google_latitude")
+# crs.geo1 = CRS("+proj=longlat")
+# proj4string(chi_tab) = crs.geo1
+plot(chi_tab, pch = 2, col = "steelblue")
 
 # Police Districts
 # read a geoJson file
@@ -100,7 +111,7 @@ m2 %>%
 m2
 # add the choropleths
 CVRM_subset1 <- CVRM_subset1 %>% 
-  group_by(dist_num) %>% 
+  group_by(arrest_num) %>% 
   mutate(COUNT = n())
 # https://stackoverflow.com/questions/68728154/leaflet-map-error-in-polygondata-defaultdata-dont-know-how-to-get-path-dat
 bins <- c(0, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000, Inf)
@@ -126,7 +137,10 @@ m2 <- leaflet(CVRM_subset1) %>%
                 style = list("font-weight" = "normal", padding = "3px 8px"),
                 textsize = "15px",
                 direction = "auto")
-              )
+              ) %>% 
+  addLegend("bottomright", pal = pal, values = ~COUNT,
+            title = "Number of arrests",
+            opacity = 1)
 
 # %>%
   # addPolygons(data = districts_raw, weight = 2, smoothFactor = 0.5, opacity = 0,
