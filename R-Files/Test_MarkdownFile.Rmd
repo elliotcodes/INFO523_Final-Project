@@ -1,0 +1,21 @@
+---
+title: "INFO523 Homework 4"
+author: "Elliot Truslow"
+date: "November 6, 2021"
+output: html_document
+---
+
+**[GitHub repo located here](https://github.com/elliotcodes/INFO523_Final-Project)**  
+
+`this Markdown file is a test`   
+
+**Goal:** To pull a Markdown file into one of the pages in the NavBar of our Shiny App.
+
+**Presentation Outline**  
+* Intro: names, product  
+* Background: data, policing  
+* Basic Analytics: like Census compared to CVRM stuff  
+* Methods: random sample from Stata, coding Shiny App (server and UI)  
+* _demo the app_    
+* Implications  
+* Questions?  
