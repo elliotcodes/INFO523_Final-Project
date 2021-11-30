@@ -31,75 +31,75 @@ library(shiny.semantic)
 library(plotly)
 
 
-# load in the dataset
-load("Dataset/info523-CVRM_Subset-02.RData")
-CVRM_subset$riskscore <- factor(CVRM_subset$riskscore, 
-                                levels = c("VERY HIGH", "HIGH", "MODERATE", "LOW", "VERY LOW"))
-
-## merge in arrests onto the sf object districts_raw
-CVRM_subset$distlastresidence <- as.character(CVRM_subset$distlastresidence)
-
-# police districts
-districts_geojson <- "Dataset/Boundaries - Police Districts (current).geojson"
-districts_raw <- sf::read_sf(districts_geojson)
-
-# districs <- merge(districts_raw, CVRM_sample, by=, all.x=TRUE)
-CVRM_subset1 <- left_join(districts_raw, CVRM_subset, by = c("dist_num" = "distlastresidence"))
-
-CVRM_no31 <- CVRM_subset1 %>% 
-    group_by(dist_num) %>% 
-    dplyr::filter(dist_num != "31")
-
-# for no 31
-# try choropleth for non 31
-CVRM_no31 <- CVRM_no31 %>% 
-    group_by(arrest_num) %>% 
-    mutate(COUNT = n())
-
-bins <- c(0, 10, 20, 30, 40, 50, 60,70,80,90, 100, 200, 300, Inf)
-pal <- colorBin("Oranges", domain = CVRM_no31$COUNT, bins = bins)
-
-# add custom label info
-labels <- sprintf(
-    "<strong>%s DISTRICT</strong><br/>%g arrests",
-    CVRM_no31$dist_label, CVRM_no31$COUNT
-) %>% lapply(htmltools::HTML)
-
-m3 <- leaflet(CVRM_no31) %>%
-    addTiles() %>%  # Add default OpenStreetMap map tiles
-    # addProviderTiles(providers$CartonDB.Position) %>% 
-    addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") %>% 
-    setView(lng = -87.66, lat = 42, zoom = 11) %>% 
-    addPolygons(stroke = FALSE, smoothFactor = 0.2, opacity = 0.2, fillOpacity = 0.2,
-                fillColor = ~pal(COUNT), 
-                highlightOptions = highlightOptions(color = "#666", weight = 2, fillOpacity = 0.1,
-                                                    bringToFront = TRUE),
-                label = labels,
-                labelOptions = labelOptions(
-                    style = list("font-weight" = "normal", padding = "3px 8px"),
-                    textsize = "15px",
-                    direction = "auto")
-    ) %>% 
-    addLegend("bottomright", pal = pal, values = ~COUNT,
-              title = "Number of arrests",
-              opacity = 1)
+# # load in the dataset
+# load("Dataset/info523-CVRM_Subset-02.RData")
+# CVRM_subset$riskscore <- factor(CVRM_subset$riskscore, 
+#                                 levels = c("VERY HIGH", "HIGH", "MODERATE", "LOW", "VERY LOW"))
+# 
+# ## merge in arrests onto the sf object districts_raw
+# CVRM_subset$distlastresidence <- as.character(CVRM_subset$distlastresidence)
+# 
+# # police districts
+# districts_geojson <- "Dataset/Boundaries - Police Districts (current).geojson"
+# districts_raw <- sf::read_sf(districts_geojson)
+# 
+# # districs <- merge(districts_raw, CVRM_sample, by=, all.x=TRUE)
+# CVRM_subset1 <- left_join(districts_raw, CVRM_subset, by = c("dist_num" = "distlastresidence"))
+# 
+# CVRM_no31 <- CVRM_subset1 %>% 
+#     group_by(dist_num) %>% 
+#     dplyr::filter(dist_num != "31")
+# 
+# # for no 31
+# # try choropleth for non 31
+# CVRM_no31 <- CVRM_no31 %>% 
+#     group_by(arrest_num) %>% 
+#     mutate(COUNT = n())
+# 
+# bins <- c(0, 10, 20, 30, 40, 50, 60,70,80,90, 100, 200, 300, Inf)
+# pal <- colorBin("Oranges", domain = CVRM_no31$COUNT, bins = bins)
+# 
+# # add custom label info
+# labels <- sprintf(
+#     "<strong>%s DISTRICT</strong><br/>%g arrests",
+#     CVRM_no31$dist_label, CVRM_no31$COUNT
+# ) %>% lapply(htmltools::HTML)
+# 
+# m3 <- leaflet(CVRM_no31) %>%
+#     addTiles() %>%  # Add default OpenStreetMap map tiles
+#     # addProviderTiles(providers$CartonDB.Position) %>% 
+#     addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") %>% 
+#     setView(lng = -87.66, lat = 42, zoom = 11) %>% 
+#     addPolygons(stroke = FALSE, smoothFactor = 0.2, opacity = 0.2, fillOpacity = 0.2,
+#                 fillColor = ~pal(COUNT), 
+#                 highlightOptions = highlightOptions(color = "#666", weight = 2, fillOpacity = 0.1,
+#                                                     bringToFront = TRUE),
+#                 label = labels,
+#                 labelOptions = labelOptions(
+#                     style = list("font-weight" = "normal", padding = "3px 8px"),
+#                     textsize = "15px",
+#                     direction = "auto")
+#     ) %>% 
+#     addLegend("bottomright", pal = pal, values = ~COUNT,
+#               title = "Number of arrests",
+#               opacity = 1)
 
 #### basic server function
-server <- function(input, output, session) {
-    # labels <- reactive({sprintf(
-    #     "<strong>%s DISTRICT</strong><br/>%g arrests",
-    #     CVRM_no31$dist_label, CVRM_no31$COUNT) %>% 
-    #         lapply(htmltools::HTML)
-    # })
-    output$map <- renderLeaflet({ 
-        leaflet() %>%
-            addTiles() %>%  # Add default OpenStreetMap map tiles
-            # addProviderTiles(providers$CartonDB.Position) %>% 
-            addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") 
-        # %>% 
-        #     setView(lng = -87.66, lat = 42, zoom = 11)
-    })
-}
+# server <- function(input, output, session) {
+#     # labels <- reactive({sprintf(
+#     #     "<strong>%s DISTRICT</strong><br/>%g arrests",
+#     #     CVRM_no31$dist_label, CVRM_no31$COUNT) %>% 
+#     #         lapply(htmltools::HTML)
+#     # })
+#     output$map <- renderLeaflet({ 
+#         leaflet() %>%
+#             addTiles() %>%  # Add default OpenStreetMap map tiles
+#             # addProviderTiles(providers$CartonDB.Position) %>% 
+#             addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") 
+#         # %>% 
+#         #     setView(lng = -87.66, lat = 42, zoom = 11)
+#     })
+# }
 
 #### the server function with added polygons
 server <- function(input, output, session) {
@@ -110,14 +110,13 @@ server <- function(input, output, session) {
     districts_raw <- sf::read_sf("Dataset/Boundaries - Police Districts (current).geojson")
 
     CVRM_subset1 <- left_join(districts_raw, CVRM_subset, by = c("dist_num" = "distlastresidence"))
-    
+
     # subset data to remove 31
     CVRM_no31 <- CVRM_subset1 %>%
         group_by(dist_num) %>%
         dplyr::filter(dist_num != "31")
-
-    # # for no 31
-    # # try choropleth for non 31
+  
+      # # try choropleth for non 31
     CVRM_no31 <- CVRM_no31 %>%
         group_by(arrest_num) %>%
         mutate(COUNT = n())
@@ -126,7 +125,7 @@ server <- function(input, output, session) {
     bins <- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, Inf)
     
     # color palette
-    pal <- colorBin("Spectral", domain = CVRM_no31$COUNT, bins = bins)
+    pal <- colorBin("Blues", domain = CVRM_no31$COUNT, bins = bins)
     
     # labels for the map
     # labels <- reactive({sprintf(
@@ -141,21 +140,21 @@ server <- function(input, output, session) {
             addTiles() %>%  # Add default OpenStreetMap map tiles
             # addProviderTiles(providers$CartonDB.Position) %>% 
             addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") %>%
-            setView(lng = -87.66, lat = 42, zoom = 11)  %>%
-            addPolygons(data = CVRM_no31, stroke = FALSE, smoothFactor = 0.2, opacity = 0.2, fillOpacity = 0.2,
-                        fillColor = ~pal(COUNT),
-                        highlightOptions = highlightOptions(color = "#666", weight = 2, fillOpacity = 0.1,
+            addMarkers(lng=-87.827286, lat=41.963364, label = "Norridge Village") %>% 
+            setView(lng = -87.7539448, lat = 41.8455877, zoom = 11)  %>%
+            addPolygons(data = CVRM_no31, stroke = TRUE, smoothFactor = 0.2, opacity = 0.2, fillOpacity = 0.2,
+                        fillColor = ~pal(COUNT), color = "white", weight = 1,
+                        highlightOptions = highlightOptions(color = "white", weight = 2, fillOpacity = 0.1,
                                                             bringToFront = TRUE),
                         label = labels,
                         labelOptions = labelOptions(
                             style = list("font-weight" = "normal", padding = "3px 8px"),
                             textsize = "15px",
                             direction = "auto")
-            )
-        # %>%
-        # addLegend("bottomright", pal = pal, values = ~CVRM_no31$COUNT,
-        #           title = "Number of arrests",
-        #           opacity = 1)
+            ) %>%
+        addLegend("bottomleft", pal = pal, values = CVRM_no31$COUNT,
+                  title = "Number of arrests",
+                  opacity = 1)
     })
 }
 
