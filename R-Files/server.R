@@ -11,7 +11,6 @@ library(shinydashboard)
 library(leaflet)
 library(RColorBrewer)
 library(tidyverse)
-library(leaflet)
 library(stringr)
 library(sf)
 library(httr)
@@ -29,7 +28,7 @@ library(htmltools)
 library(data.table)
 library(shiny.semantic)
 library(plotly)
-
+library(DT)
 
 # # load in the dataset
 # load("Dataset/info523-CVRM_Subset-02.RData")
@@ -120,19 +119,13 @@ server <- function(input, output, session) {
         group_by(dist_num) %>%
         dplyr::filter(dist_num != "31")
   
-    #   # # try choropleth for non 31
-    # CVRM_no31 <- CVRM_no31 %>%
-    #     group_by(arrest_num) %>%
-    #     mutate(COUNT = n())
-
     # bins for the number of arrests
-    bins <- c(0, 10, 20, 30, 40, 50, Inf)
+    bins <- c(0, 10, 20, 30, 40, 50, 60, 70, Inf)
     
     # color palette
     pal <- colorBin("Blues", domain = CVRM_no31$COUNT_arr, bins = bins)
     
     # labels for the map
-    # labels <- reactive({sprintf(
     labels <- sprintf(
         "<strong>%s DISTRICT</strong><br/>%g arrests",
         CVRM_no31$dist_label, CVRM_no31$COUNT_arr
@@ -142,7 +135,6 @@ server <- function(input, output, session) {
     # leafletProxy("m3") %>% 
          leaflet() %>%
             addTiles() %>%  # Add default OpenStreetMap map tiles
-            # addProviderTiles(providers$CartonDB.Position) %>% 
             addMarkers(lng=-87.663045, lat=42.009932, popup="Chicago") %>%
             addMarkers(lng=-87.827286, lat=41.963364, label = "Norridge Village") %>% 
             setView(lng = -87.7539448, lat = 41.8455877, zoom = 11)  %>%
