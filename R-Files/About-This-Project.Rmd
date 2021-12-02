@@ -1,0 +1,47 @@
+---
+output:
+  html_document: default
+---
+### About this Project  
+**Authors:** Elliot Truslow, Jung Mee Park  
+**Course:** INFO523 - Data Mining and Discovery  
+
+**[Visit the GitHub repository](https://github.com/elliotcodes/INFO523_Final-Project)**  
+</br>
+
+##### General  
+
+###### `Goal of the Project`
+The goal of this project is to use R to **create a Shiny app** featuring a map of Cook County, Illinois that visually communicates information about arrest record data by police districts in Chicago, IL.  
+
+###### `Relevance to the Course`
+This project calls on a variety of course concepts (e.g., data mining, algorithms, functions, vectors, etc.) and **extends beyond the scope of the course** to include programming both the server and user interface logic in Shiny app. Per the assignment rubric, the project has **real-world applications** which are described  below.  
+
+---
+
+##### Background  
+
+###### `Data Source`
+Data for this project are sourced from the [Chicago Data Portal](https://data.cityofchicago.org/), an initiative dedicated to promoting **open access to government data** and encouraging the development of tools to better serve the people of Chicago. You can [learn more here](https://www.chicago.gov/city/en/narr/foia/CityData.html).  
+
+###### `Dataset`
+The data used in the project are a subset of a sample from a larger dataset containing Chicago Police Department arrest records data from 2006-2016. The original dataset contains 313,469 observations and more than 40 variables. **A random and representative sample of 1000 observations and a subset of 10 variables was taken for this project.** A copy of the full dataset (n=313,469) can be downloaded from the [Strategic Subject List Historical Records](https://data.cityofchicago.org/Public-Safety/Strategic-Subject-List-Historical/4aki-r3np).  
+
+###### `Real-World Application of Data`
+These data come from the database used to train **Chicago Police Department's Crime and Victim Risk Mitigation model**. The model was funded in part by the United States Department of Justice and serves as one example of **algorithmic predictive policing technologies** deployed in the US.  
+
+---
+
+##### Methods  
+
+###### `Sampling`  
+A **random sample** of the data (n=313,469) was taken in Stata using the `runiform()` command to generate random numbers from 0-1. The random numbers were then sorted (`sort random`) in ascending order and a sample was taken of the **first 1000 observations**. The resulting dataset was exported to a .csv file.  
+
+###### `Subsetting`  
+The random sample of 1000 observations was pulled into R using `read.csv(file="")`. Next, a **subset of 10 variables** of interest was taken, resulting in the final dataset used for the project **(n=1000, 10 variables)**.     
+###### `Building the Shiny app`  
+Building a **Shiny app** requires 2 main components: **the server** and **the user interface** (ui). The authors of the project split the work evenly such that **Jung Mee Park built the server** and **Elliot Ramo (Truslow) built the ui**. The team met multiple times over the course of several weeks in **November and December 2021** to collaborate on the application. **Special thanks goes to Dr. Cristian Román-Palacios** for his efforts in troubleshooting the application and ensuring the map is functional.  
+
+
+</br>
+
