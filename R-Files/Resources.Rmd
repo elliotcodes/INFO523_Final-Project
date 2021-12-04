@@ -1,0 +1,56 @@
+---
+output:
+  html_document: default
+---
+#### **References**  
+Below is a small sample of recommended material relevant to the themes of this project.  
+The list prioritizes the work and lived experiences of Black, brown, Indigenous, and other people of color.  
+</br>
+
+##### **Racial Justice and Technology**  
+###### **Watch**  
++ [Coded Bias](https://www.pbs.org/independentlens/documentaries/coded-bias/), available on PBS
+</br>
+
+###### **Read** 
++ [Algorithms of Oppression: How Search Engines Reinforce Racism](https://bookshop.org/books/algorithms-of-oppression-how-search-engines-reinforce-racism/9781479837243) by Dr. Safiya Umoja Noble  
++ [Dark Matters: On the Surveillance of Blackness](https://bookshop.org/books/dark-matters-on-the-surveillance-of-blackness/9780822359388?aid=25279&listref=ai-ethics-bias-social-justice) by Dr. Simone Browne  
++ [Race After Technology: Abolitionist Tools for the New Jim Code](https://bookshop.org/books/race-after-technology-abolitionist-tools-for-the-new-jim-code/9781509526406?aid=25279&listref=ai-ethics-bias-social-justice) by Dr. Ruha Benjamin  
++ [Black Software: The Internet & Racial Justice, from the Afronet to Black Lives Matter](https://bookshop.org/books/black-software-the-internet-racial-justice-from-the-afronet-to-black-lives-matter/9780190863845?aid=25279&listref=ai-ethics-bias-social-justice) by Dr. Charlton D. McIlwain  
++ [Captivating Technology: Race, Carceral Technoscience, and Liberatory Imagination in Everyday Life](https://bookshop.org/books/captivating-technology-race-carceral-technoscience-and-liberatory-imagination-in-everyday-life/9781478003816?aid=25279&listref=ai-ethics-bias-social-justice) edited by Dr. Ruha Benjamin  
++ [Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor](https://bookshop.org/books/automating-inequality-how-high-tech-tools-profile-police-and-punish-the-poor/9781250215789) by Dr. Virginia Eubanks  
+
+---
+
+##### **Ethics in Artificial Intelligence and Big Data** 
+###### **Watch**  
++ [The Age of Big Data](https://www.documentarymania.com/player.php?title=The%20Age%20of%20Big%20Data), free streaming here
++ [The Great Hack](https://www.netflix.com/title/80117542), available on Netflix
+</br>
+
+###### **Read**  
++ [Artificial Unintelligence: How Computers Misunderstand the World](https://bookshop.org/books/artificial-unintelligence-how-computers-misunderstand-the-world/9780262537018) by Dr. Meredith Broussard  
++ [Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy](https://bookshop.org/books/weapons-of-math-destruction-how-big-data-increases-inequality-and-threatens-democracy/9780553418835) by Dr. Cathy O'Neil  
++ [The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power](https://bookshop.org/books/the-age-of-surveillance-capitalism-the-fight-for-a-human-future-at-the-new-frontier-of-power/9781541758001?aid=25279&listref=ai-ethics-bias-social-justice) by Dr. Shoshana Zuboff  
+
+---
+
+##### **Policing and Mass Incarceration** 
+###### **Watch**  
++ [13th](https://www.youtube.com/watch?v=krfcq5pF8u8), available on YouTube  
++ [Say Her Name: The Life and Death Of Sandra Bland](https://www.hbo.com/documentaries/say-her-name-the-life-and-death-of-sandra-bland), available on HBO and elsewhere  
++ [LA 92](https://www.nationalgeographic.com/tv/movies-and-specials/la-92), available on National Geographic  
++ [Time: The Kalief Browder Story](https://www.netflix.com/title/80187052), available on Netflix  
+See more [here](https://www.tvguide.com/news/what-time-is-yellowstone-season-4-episode-6/) and [here](https://www.vox.com/culture/2020/6/1/21276965/policing-prisons-movies-shows-streaming-netflix)
+</br>
+
+###### **Read**  
++ [The New Jim Crow: Mass Incarceration in the Age of Colorblindness](https://bookshop.org/books/the-new-jim-crow-mass-incarceration-in-the-age-of-colorblindness-anniversary/9781620971932) by Dr. Michelle Alexander  
++ [Are Prisons Obsolete?](https://bookshop.org/books/are-prisons-obsolete/9781583225813) by Dr. Angela Davis  
++ [Predict and Surveil: Data, Discretion, and the Future of Policing](https://bookshop.org/books/predict-and-surveil-data-discretion-and-the-future-of-policing/9780190684099) by Dr. Sarah Brayne  
++ [The Rise of Big Data Policing: Surveillance, Race, and the Future of Law Enforcement](https://bookshop.org/books/the-rise-of-big-data-policing-surveillance-race-and-the-future-of-law-enforcement/9781479869978) by Dr. Andrew Guthrie Ferguson  
+
+
+
+</br>
+
