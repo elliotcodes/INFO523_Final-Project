@@ -140,7 +140,7 @@ ui <- fluidPage(
                                  # code for main panel where map goes
                                  mainPanel(
                                    h5(strong("Chicago Police Districts")),
-                                   p("The darker the gradiant, the higher the number of arrests in a given district."),
+                                   p("The darker the gradiant, the higher the number of arrests in a given district. n = 1000"),
                                    # Connects with Leaflet server code to display map
                                    leafletOutput(outputId = "map", width="100%", height = 700)
                                  )
